@@ -1,0 +1,381 @@
+swagger: '2.0'
+info:
+  version: latest
+  title: S3 API - Tagging Operations
+host: s3.seagate.com
+schemes:
+  - http
+  - https
+paths:
+  /{bucket_name}:
+    get:
+      tags:
+        - Get bucket tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+      produces:
+        - application/xml
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            xml:
+              name: Tagging
+            properties:
+              Tagset:
+                type: object
+                properties:
+                  Tag:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                      Value:
+                        type: string
+          headers:
+            x-amz-request-id:
+              type: string
+            Content-Length:
+              type: integer
+            Content-Type:
+              type: string
+            Server:
+              type: string
+    put:
+      tags:
+        - Put bucket tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: Content-MD5
+          in: header
+          description: >-
+            This  header is used by servers to provide a message-integrity check
+            for the message body.
+          type: string
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+        - name: Content-Length
+          in: header
+          description: >-
+            This header indicates the size of the message body, in bytes, sent
+            to the recipient.
+          type: string
+          required: true
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          headers:
+            Content-Length:
+              type: integer
+            x-amz-request-id:
+              type: string
+            Content-Type:
+              type: string
+            Server:
+              type: string
+    delete:
+      tags:
+        - Delete Bucket Tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+        - name: Content-Length
+          in: header
+          description: >-
+            This header indicates the size of the message body, in bytes, sent
+            to the recipient.
+          type: string
+          required: true
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          headers:
+            Content-Length:
+              type: integer
+            x-amz-request-id:
+              type: string
+            Content-Type:
+              type: string
+            Server:
+              type: string
+  /{bucket_name}/{object_name}:
+    get:
+      tags:
+        - Get Object Tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: object_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+      produces:
+        - application/xml
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            xml:
+              name: Tagging
+            properties:
+              Tagset:
+                type: object
+                properties:
+                  Tag:
+                    type: object
+                    properties:
+                      Key:
+                        type: string
+                      Value:
+                        type: string
+          headers:
+            x-amz-request-id:
+              type: string
+            Content-Length:
+              type: integer
+            Content-Type:
+              type: string
+            Server:
+              type: string
+    put:
+      tags:
+        - Put Object Tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: object_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: Content-MD5
+          in: header
+          description: >-
+            This  header is used by servers to provide a message-integrity check
+            for the message body.
+          type: string
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+        - name: Content-Length
+          in: header
+          description: >-
+            This header indicates the size of the message body, in bytes, sent
+            to the recipient.
+          type: string
+          required: true
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          headers:
+            Content-Length:
+              type: integer
+            x-amz-request-id:
+              type: string
+            Content-Type:
+              type: string
+            Server:
+              type: string
+    delete:
+      tags:
+        - Delete Object Tagging
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: object_name
+          in: path
+          type: string
+          required: true
+        - name: tagging
+          in: query
+          type: string
+          required: true
+        - name: User-Agent
+          in: header
+          description: Header to identify application, it's version number and programming language.
+          type: string
+          required: true
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          type: string
+          required: false
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          type: string
+          required: true
+        - name: Content-Length
+          in: header
+          description: >-
+            This header indicates the size of the message body, in bytes, sent
+            to the recipient.
+          type: string
+          required: true
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          headers:
+            Content-Length:
+              type: integer
+            x-amz-request-id:
+              type: string
+            Content-Type:
+              type: string
+            Server:
+              type: string

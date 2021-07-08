@@ -1,0 +1,80 @@
+swagger: '2.0'
+info:
+  version: latest
+  title: S3 API - Copy Object
+host: s3.seagate.com
+schemes:
+  - http
+  - https
+paths:
+  /{bucket_name}/{object_name}:
+    put:
+      tags:
+        - Copy Object
+      parameters:
+        - name: bucket_name
+          in: path
+          type: string
+          required: true
+        - name: object_name
+          in: path
+          type: string
+          required: true
+        - name: x-amz-copy-source
+          in: header
+          description: Header to identify the current version of an object to copy.
+          required: true
+          type: string
+        - name: User-Agent
+          in: header
+          description: >-
+            Header to identify application, it's version number and programming
+            language.
+          required: true
+          type: string
+        - name: X-Amz-Date
+          in: header
+          description: Date header used to create the signature.
+          required: false
+          type: string
+        - name: X-Amz-Content-SHA256
+          in: header
+          description: This header value informs whether s3 request signed or not.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: >-
+            This Header contains credentials to authorize a User-Agent with
+            server.
+          required: true
+          type: string
+        - name: Content-Length
+          in: header
+          description: This header indicates the size of the message body, in bytes, sent
+            to the recipient.
+          required: true
+          type: string
+      produces:
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            xml:
+              name: CopyObjectResult
+            properties:
+              LastModified:
+                type: string
+              ETag:
+                type: string  
+          headers:
+            Content-Type:
+              type: string
+            Content-Length:
+              type: integer
+            x-amz-request-id:
+              type: string
+            Server:
+              type: string
